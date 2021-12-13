@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="A blog application developed in .NET" />
+    <meta name="author" content="Yiğit Hacıefendioğlu" />
+    <title>BlogNet - @ViewData["Title"]</title>
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    @await RenderSectionAsync("Styles", false) 
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index" asp-route-slug="">BlogNet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" asp-route-slug="">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                </ul>
+                @await Html.PartialAsync("_LoginPartial")  
+            </div>
+        </div>
+    </nav>
+    <!-- Page content-->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+                @RenderBody()
+            </div>
+            <!-- Side widgets-->
+            <div class="col-lg-4">
+                <!-- Search widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Search</div>
+                    <div class="card-body">
+                        <form asp-controller="Home" asp-action="Index" method="get">
+                            <div class="input-group">
+                                <input name="q" class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Categories widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Categories</div>
+                    <div class="card-body">
+                        <vc:categories />
+                    </div>
+                </div>
+                <!-- Side widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Side Widget</div>
+                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; BlogNet @DateTime.Now.Year</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/js/site.js"></script>
+    @await RenderSectionAsync("Scripts", false) 
+</body>
+</html>
